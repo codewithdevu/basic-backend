@@ -1,33 +1,43 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import axios from 'axios'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [products, setproducts] = useState([])
+  const [error , seterror] = useState(false)
+  const [loading , setloading] = useState(false)
+
+  useEffect(() => {
+    (async() => {
+      try {
+        setloading(true)
+        seterror(false)
+        const response = await axios.get('/api/products')
+        console.log(response.data);
+        setproducts(response.data)
+        setloading(false)
+      } catch (error) {
+        seterror(true)
+        setloading(false)
+      }
+    })()
+
+  } , [])
+
+  if(error) {
+    return <h1>something went wrong</h1>
+  } 
+
+  if(loading) {
+    return <h1>Loading...</h1>
+  }
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <h1>chai aur api in react</h1>
+      <h2>number of products : {products.length}</h2>
     </>
   )
 }
