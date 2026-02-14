@@ -4,7 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [isLoggedIn , setisLoogedIn] = useState(false)
+  const [isLoggedIn , setisLoogedIn] = useState(NaN)
 
   return (
     <div style={{padding: "2rem"}}>
@@ -14,7 +14,7 @@ function App() {
 
       <div>
         <h3>&& opreator</h3>
-        {isLoggedIn && <p>Welcome to the website</p>}
+        {!!isLoggedIn && <p>Welcome to the website</p>}
       </div>
       <div>
         <h3>Ternary opreator</h3>
