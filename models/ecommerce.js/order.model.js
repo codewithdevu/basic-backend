@@ -2,7 +2,7 @@ import mongoose from "mongoose"
 
 const orderItemsSchema = new mongoose.Schema({
     productId: {
-        type: mongoose.Schema.types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: "Product"
     },
     quantity: {
@@ -16,7 +16,7 @@ const orderSchema = new mongoose.Schema({
         required: true,
     },
     customer: {
-        type: mongoose.Schema.types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     },
     orderItems: {

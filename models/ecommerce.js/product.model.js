@@ -21,11 +21,11 @@ const productSchema = new mongoose.Schema({
         default: 0,
     },
     category: {
-        type: mongoose.Schema.types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: "Category"
     },
     owner: {
-        type: mongoose.Schema.types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: "User",
     }
 }, {timeStamps: true})
